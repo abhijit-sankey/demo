@@ -1,0 +1,24 @@
+name: Create Zip on Merge
+
+on:
+  push:
+    branches:
+      - master  # Change this to your target branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Create Zip
+      run: |
+        zip -r my_code.zip .
+
+    - name: Upload Zip
+      uses: actions/upload-artifact@v2
+      with:
+        name: my_code
+        path: my_code.zip
